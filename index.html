@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trost Studio — Influencer Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-text" id="loaderText"></div>
+    </div>
+ 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+ 
+    <!-- Grain -->
+    <div class="grain"></div>
+ 
+ 
+ 
+    <!-- Three.js Canvas -->
+    <canvas id="three-canvas"></canvas>
+ 
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav-logo">Trost Studio</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+ 
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-main-text">
+                <h1 class="hero-trost">Trost</h1>
+                <span class="hero-studio">Studio</span>
+            </div>
+            <p class="hero-tagline">
+                Influencer<br>marketing agency
+            </p>
+        </div>
+ 
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+ 
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="section-inner">
+            <div class="section-label reveal">About</div>
+            <h2 class="section-title reveal reveal-delay-1">
+                We connect brands<br>with authentic voices
+            </h2>
+            <p class="section-body reveal reveal-delay-2">
+                Trost Studio is a boutique influencer marketing agency specializing in
+                curating meaningful partnerships between forward-thinking brands and
+                creators who genuinely resonate with their audiences. We believe in
+                the power of authentic storytelling.
+            </p>
+ 
+            <div class="stats-row">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-count="250">0</div>
+                    <div class="stat-label">Campaigns Delivered</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-1">
+                    <div class="stat-number" data-count="45">0</div>
+                    <div class="stat-label">Global Markets</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-2">
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-3">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Client Retention %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Quote -->
+    <section class="quote-section">
+        <p class="quote-text reveal">
+            "Authenticity is the new currency. We don't just find influencers — we find voices that matter."
+        </p>
+        <p class="quote-author reveal reveal-delay-1">— Trost Studio Philosophy</p>
+    </section>
+ 
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="section-inner">
+            <div class="section-label reveal">Services</div>
+            <h2 class="section-title reveal reveal-delay-1">What we do</h2>
+            <p class="section-body reveal reveal-delay-2">
+                From strategy to execution, we handle every aspect of influencer
+                marketing with precision and care.
+            </p>
+ 
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-num">01</div>
+                    <h3 class="service-title">Strategy & Planning</h3>
+                    <p class="service-desc">
+                        Data-driven campaign strategies tailored to your brand objectives,
+                        audience demographics, and market positioning.
+                    </p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-num">02</div>
+                    <h3 class="service-title">Creator Sourcing</h3>
+                    <p class="service-desc">
+                        Hand-picked influencer partnerships based on alignment,
+                        engagement quality, and authentic audience connection.
+                    </p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-num">03</div>
+                    <h3 class="service-title">Content Direction</h3>
+                    <p class="service-desc">
+                        Creative briefs and art direction that ensure every piece of
+                        content feels native to the creator while on-brand.
+                    </p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-num">04</div>
+                    <h3 class="service-title">Campaign Management</h3>
+                    <p class="service-desc">
+                        End-to-end execution including negotiations, contracts,
+                        timelines, and real-time performance monitoring.
+                    </p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-num">05</div>
+                    <h3 class="service-title">Analytics & Reporting</h3>
+                    <p class="service-desc">
+                        Comprehensive performance insights with actionable
+                        recommendations for future campaign optimization.
+                    </p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-num">06</div>
+                    <h3 class="service-title">Brand Partnerships</h3>
+                    <p class="service-desc">
+                        Long-term ambassador programs that build sustained
+                        brand affinity and recurring value.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Work -->
+    <section class="section work-section" id="work">
+        <div class="section-inner">
+            <div class="section-label reveal">Selected Work</div>
+            <h2 class="section-title reveal reveal-delay-1">Campaigns that<br>made an impact</h2>
+            <p class="section-body reveal reveal-delay-2">
+                A curated selection of our most impactful influencer marketing
+                campaigns across fashion, beauty, lifestyle, and tech.
+            </p>
+ 
+            <div class="work-grid">
+                <div class="work-item reveal">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" alt="Fashion Campaign">
+                    <div class="work-overlay">
+                        <span class="work-cat">Fashion</span>
+                        <span class="work-name">Maison Verte SS24</span>
+                    </div>
+                </div>
+                <div class="work-item reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80" alt="Beauty Campaign">
+                    <div class="work-overlay">
+                        <span class="work-cat">Beauty</span>
+                        <span class="work-name">Lumière Skincare</span>
+                    </div>
+                </div>
+                <div class="work-item reveal">
+                    <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&q=80" alt="Lifestyle Campaign">
+                    <div class="work-overlay">
+                        <span class="work-cat">Lifestyle</span>
+                        <span class="work-name">Nomad Travel Co.</span>
+                    </div>
+                </div>
+                <div class="work-item reveal reveal-delay-1">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Tech Campaign">
+                    <div class="work-overlay">
+                        <span class="work-cat">Tech</span>
+                        <span class="work-name">Aurora Audio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Clients -->
+    <section class="clients-section">
+        <div class="section-inner" style="margin-bottom: 48px;">
+            <div class="section-label reveal">Trusted By</div>
+        </div>
+        <div class="marquee-track">
+            <span class="client-name">Maison Verte</span>
+            <span class="client-name">Lumière</span>
+            <span class="client-name">Nomad Co.</span>
+            <span class="client-name">Aurora Audio</span>
+            <span class="client-name">Velvet & Co.</span>
+            <span class="client-name">Bloom Beauty</span>
+            <span class="client-name">Atlas Watches</span>
+            <span class="client-name">Sable Home</span>
+            <span class="client-name">Maison Verte</span>
+            <span class="client-name">Lumière</span>
+            <span class="client-name">Nomad Co.</span>
+            <span class="client-name">Aurora Audio</span>
+            <span class="client-name">Velvet & Co.</span>
+            <span class="client-name">Bloom Beauty</span>
+            <span class="client-name">Atlas Watches</span>
+            <span class="client-name">Sable Home</span>
+        </div>
+    </section>
+ 
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2 class="cta-title reveal">
+            Ready to build something <br> worth talking about?
+        </h2>
+        <a href="https://www.instagram.com/trost.studio" target="_blank" rel="noopener noreferrer" class="cta-button reveal reveal-delay-1">
+            Start A Conversation 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </section>
+ 
+    <!-- Footer -->
+    <footer class="footer footer-dark">
+    <div class="footer-left">Trost Studio</div>
+
+    <div class="footer-right">
+        <a href="mailto:Trost.studio11@gmail.com" class="footer-icon" target="_blank">
+            <img src="image/gmail logo.png" alt="Gmail">
+        </a>
+
+        <a href="https://www.instagram.com/trost.studio" class="footer-icon" target="_blank">
+            <img src="image/instagram.png" alt="Instagram">
+        </a>
+    </div>
+</footer>
+
+
+ 
+    <script src="script.js"></script>
+</body>
+</html>
