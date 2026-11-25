@@ -322,109 +322,337 @@
             <span class="client-name">Sable Home</span>
         </div>
     </section>
- <!-- Start a Campaign -->
-<section class="section" id="campaign">
-    <div class="section-inner">
-        <div class="section-label reveal">Start a Campaign</div>
-        <h2 class="section-title reveal reveal-delay-1">Tell us about<br>your business</h2>
-        <p class="section-body reveal reveal-delay-2">
-            Share a few details and we'll get back to you with the right creators for your brand.
-        </p>
+<!-- Book a Free Strategy Call -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 
-        <form class="campaign-form reveal" id="campaignForm">
-            <input type="hidden" name="_subject" value="New Campaign Request — Trost Studio">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+<style>
+    #book-call {
+        --bc-text: #1A1A1A;
+        --bc-muted: #6B6B6B;
+        --bc-accent: #8A6A3B;
+        --bc-border: rgba(26,26,26,0.18);
+        --bc-error: #B3261E;
+        position: relative;
+        z-index: 1;
+        padding: 96px 20px;
+        font-family: 'DM Sans', sans-serif;
+        color: var(--bc-text);
+    }
+    #book-call *, #book-call *::before, #book-call *::after { box-sizing: border-box; }
+    #book-call .bc-wrap {
+        max-width: 1160px; margin: 0 auto;
+        display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px;
+    }
+    @media (min-width: 960px) {
+        #book-call .bc-wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 72px; align-items: start; }
+        #book-call .bc-intro { position: sticky; top: 120px; }
+    }
+    #book-call .bc-label {
+        display: block; margin: 0 0 20px;
+        font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+        letter-spacing: 0.22em; text-transform: uppercase; color: var(--bc-accent);
+    }
+    #book-call .bc-title {
+        margin: 0 0 20px;
+        font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500;
+        font-size: clamp(34px, 5.2vw, 56px); line-height: 1.05; letter-spacing: -0.02em;
+        color: var(--bc-text);
+    }
+    #book-call .bc-text {
+        margin: 0; max-width: 440px; font-size: 16px; line-height: 1.7;
+        font-weight: 300; color: var(--bc-muted);
+    }
+    #book-call .bc-card {
+        background: rgba(255,255,255,0.55);
+        border: 1px solid var(--bc-border); border-radius: 16px;
+        padding: 28px 20px;
+        box-shadow: 0 24px 60px -20px rgba(26,26,26,0.18);
+    }
+    @media (min-width: 640px) { #book-call .bc-card { padding: 36px; } }
+    #book-call .bc-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    @media (min-width: 640px) { #book-call .bc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    #book-call .bc-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    #book-call .bc-field label {
+        font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 400;
+        letter-spacing: 0.16em; text-transform: uppercase; color: var(--bc-muted);
+    }
+    #book-call .bc-field input,
+    #book-call .bc-field select {
+        width: 100%; min-width: 0; height: 48px; padding: 0 14px;
+        font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--bc-text);
+        background-color: rgba(255,255,255,0.7);
+        border: 1px solid var(--bc-border); border-radius: 10px;
+        outline: none; -webkit-appearance: none; appearance: none;
+        transition: border-color .25s ease, background-color .25s ease;
+    }
+    #book-call .bc-field select {
+        padding-right: 40px; cursor: pointer;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%231A1A1A' stroke-width='1.5'><path d='M1 1.5l5 5 5-5'/></svg>");
+        background-repeat: no-repeat; background-position: right 16px center;
+    }
+    #book-call .bc-field input::placeholder { color: #9A9A9A; }
+    #book-call .bc-field input:focus,
+    #book-call .bc-field select:focus {
+        border-color: var(--bc-accent); background-color: #fff;
+        outline: 2px solid var(--bc-accent); outline-offset: 1px;
+    }
+    #book-call .bc-field .is-invalid { border-color: var(--bc-error); }
+    #book-call .bc-field .is-invalid:focus { outline-color: var(--bc-error); border-color: var(--bc-error); }
 
-            <div class="form-grid">
-                <div class="form-field">
-                    <label for="cf-name">Your Name</label>
-                    <input type="text" id="cf-name" name="Name" required>
+    #book-call .bc-error {
+        margin: 20px 0 0; font-size: 14px; line-height: 1.5; color: var(--bc-error);
+    }
+    #book-call .bc-error[hidden], #book-call .bc-result[hidden] { display: none; }
+
+    #book-call .bc-btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        min-height: 48px; padding: 0 28px; border-radius: 999px;
+        font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+        text-decoration: none; cursor: pointer; line-height: 1;
+        transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+    }
+    #book-call .bc-btn-primary { background: var(--bc-text); color: #EBE8E2; border: 1px solid var(--bc-text); }
+    #book-call .bc-btn-primary:hover { background: var(--bc-accent); border-color: var(--bc-accent); color: #fff; }
+    #book-call .bc-btn-secondary { background: transparent; color: var(--bc-text); border: 1px solid var(--bc-border); }
+    #book-call .bc-btn-secondary:hover { border-color: var(--bc-text); }
+    #book-call .bc-btn:focus-visible { outline: 2px solid var(--bc-accent); outline-offset: 3px; }
+    #book-call .bc-submit { margin-top: 28px; }
+    @media (max-width: 479px) {
+        #book-call .bc-submit, #book-call .bc-actions .bc-btn { width: 100%; }
+    }
+
+    #book-call .bc-result {
+        margin-top: 28px; padding: 22px 20px;
+        border: 1px solid var(--bc-border); border-radius: 12px;
+        background: rgba(255,255,255,0.5);
+    }
+    #book-call .bc-result h3 {
+        margin: 0 0 6px;
+        font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500;
+        font-size: 22px; letter-spacing: -0.01em; color: var(--bc-text);
+    }
+    #book-call .bc-result p { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--bc-muted); }
+    #book-call .bc-result textarea {
+        width: 100%; min-height: 220px; padding: 14px; resize: vertical;
+        font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; color: var(--bc-text);
+        background: rgba(255,255,255,0.7); border: 1px solid var(--bc-border); border-radius: 10px;
+    }
+    #book-call .bc-result textarea:focus { outline: 2px solid var(--bc-accent); outline-offset: 1px; }
+    #book-call .bc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+</style>
+
+<section id="book-call" aria-labelledby="bc-heading">
+    <div class="bc-wrap">
+
+        <div class="bc-intro">
+            <span class="bc-label">Free strategy call</span>
+            <h2 class="bc-title" id="bc-heading">Book your free strategy call.</h2>
+            <p class="bc-text">
+                Tell us about your business and pick a time that suits you. We will look at your goals and plan how creators can help. There is no charge for the call.
+            </p>
+        </div>
+
+        <div class="bc-card">
+            <form id="bc-form" novalidate>
+                <div class="bc-grid">
+
+                    <div class="bc-field">
+                        <label for="bc-name">Your name <span aria-hidden="true">*</span></label>
+                        <input id="bc-name" name="name" type="text" placeholder="Full name" autocomplete="name" required aria-required="true" aria-describedby="bc-error">
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-business">Business name <span aria-hidden="true">*</span></label>
+                        <input id="bc-business" name="business" type="text" placeholder="Your cafe or brand" autocomplete="organization" required aria-required="true" aria-describedby="bc-error">
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-type">Business type</label>
+                        <select id="bc-type" name="type">
+                            <option value="" selected>Select</option>
+                            <option>Cafe</option>
+                            <option>Restaurant</option>
+                            <option>Fashion brand</option>
+                            <option>Salon or studio</option>
+                            <option>Local shop</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-city">City</label>
+                        <input id="bc-city" name="city" type="text" placeholder="Your city" autocomplete="address-level2">
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-phone">Contact number <span aria-hidden="true">*</span></label>
+                        <input id="bc-phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="bc-error">
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-budget">Monthly budget</label>
+                        <select id="bc-budget" name="budget">
+                            <option value="" selected>Select</option>
+                            <option>Under ₹10,000</option>
+                            <option>₹10,000 to ₹25,000</option>
+                            <option>₹25,000 to ₹50,000</option>
+                            <option>₹50,000 or more</option>
+                            <option>Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-day">Preferred day</label>
+                        <select id="bc-day" name="day"></select>
+                    </div>
+
+                    <div class="bc-field">
+                        <label for="bc-time">Preferred time (IST)</label>
+                        <select id="bc-time" name="time">
+                            <option>11 am to 2 pm</option>
+                            <option>6 pm to 9 pm</option>
+                        </select>
+                    </div>
+
                 </div>
-                <div class="form-field">
-                    <label for="cf-business">Business / Brand Name</label>
-                    <input type="text" id="cf-business" name="Business" required>
-                </div>
-                <div class="form-field">
-                    <label for="cf-email">Email</label>
-                    <input type="email" id="cf-email" name="Email" required>
-                </div>
-                <div class="form-field">
-                    <label for="cf-phone">WhatsApp / Phone</label>
-                    <input type="tel" id="cf-phone" name="Phone" required>
-                </div>
-                <div class="form-field">
-                    <label for="cf-niche">Industry</label>
-                    <select id="cf-niche" name="Industry" required>
-                        <option value="" disabled selected>Select</option>
-                        <option>AI & Tech</option>
-                        <option>Fashion</option>
-                        <option>Beauty</option>
-                        <option>Lifestyle</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="cf-budget">Campaign Budget</label>
-                    <select id="cf-budget" name="Budget" required>
-                        <option value="" disabled selected>Select</option>
-                        <option>Under ₹25K</option>
-                        <option>₹25K – ₹1L</option>
-                        <option>₹1L – ₹5L</option>
-                        <option>₹5L+</option>
-                        <option>Not sure yet</option>
-                    </select>
-                </div>
-                <div class="form-field full">
-                    <label for="cf-link">Website / Instagram (optional)</label>
-                    <input type="text" id="cf-link" name="Website_or_Instagram">
-                </div>
-                <div class="form-field full">
-                    <label for="cf-msg">Tell us about your business &amp; goals</label>
-                    <textarea id="cf-msg" name="Message" required></textarea>
+
+                <p class="bc-error" id="bc-error" role="alert" hidden></p>
+
+                <button type="submit" class="bc-btn bc-btn-primary bc-submit">Book a call</button>
+            </form>
+
+            <div class="bc-result" id="bc-result" hidden>
+                <h3>Your call request is ready</h3>
+                <p>Send this message to us on WhatsApp and we will confirm your slot.</p>
+                <textarea id="bc-message" readonly aria-label="Your call request message"></textarea>
+                <div class="bc-actions">
+                    <a class="bc-btn bc-btn-primary" id="bc-wa" href="#" target="_blank" rel="noopener noreferrer">Send on WhatsApp</a>
+                    <button type="button" class="bc-btn bc-btn-secondary" id="bc-copy">Copy message</button>
                 </div>
             </div>
+        </div>
 
-            <button type="submit" class="campaign-btn" id="campaignBtn">
-                Start Campaign
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-            <div class="form-status" id="campaignStatus"></div>
-        </form>
     </div>
 </section>
 
 <script>
-    (function () {
-        var form = document.getElementById('campaignForm');
-        var btn = document.getElementById('campaignBtn');
-        var status = document.getElementById('campaignStatus');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            btn.disabled = true;
-            status.className = 'form-status';
-            status.textContent = 'Sending...';
-            var data = {};
-            new FormData(form).forEach(function (v, k) { data[k] = v; });
-            fetch('https://formsubmit.co/ajax/trost.studio11@gmail.com', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-            .then(function () {
-                form.reset();
-                status.className = 'form-status ok';
-                status.textContent = "Thanks! We've received your details and will reach out soon.";
-            })
-            .catch(function () {
-                status.className = 'form-status err';
-                status.textContent = 'Something went wrong. Please email us at trost.studio11@gmail.com';
-            })
-            .finally(function () { btn.disabled = false; });
-        });
-    })();
+(function () {
+    var root = document.getElementById('book-call');
+    if (!root) return;
+
+    var WHATSAPP_NUMBER = '918109954207';
+
+    var form = root.querySelector('#bc-form');
+    var errorEl = root.querySelector('#bc-error');
+    var resultEl = root.querySelector('#bc-result');
+    var msgEl = root.querySelector('#bc-message');
+    var waBtn = root.querySelector('#bc-wa');
+    var copyBtn = root.querySelector('#bc-copy');
+    var daySel = root.querySelector('#bc-day');
+
+    var f = {
+        name: root.querySelector('#bc-name'),
+        business: root.querySelector('#bc-business'),
+        type: root.querySelector('#bc-type'),
+        city: root.querySelector('#bc-city'),
+        phone: root.querySelector('#bc-phone'),
+        budget: root.querySelector('#bc-budget'),
+        day: daySel,
+        time: root.querySelector('#bc-time')
+    };
+
+    // Next 7 days starting tomorrow (IST)
+    var ist = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    ist.setHours(12, 0, 0, 0);
+    for (var i = 1; i <= 7; i++) {
+        var d = new Date(ist);
+        d.setDate(ist.getDate() + i);
+        var label = d.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short' });
+        var opt = document.createElement('option');
+        opt.value = label;
+        opt.textContent = label;
+        daySel.appendChild(opt);
+    }
+
+    var required = [
+        { el: f.name, label: 'your name' },
+        { el: f.business, label: 'your business name' },
+        { el: f.phone, label: 'your contact number' }
+    ];
+
+    function joinList(a) {
+        if (a.length === 1) return a[0];
+        return a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+    }
+
+    function clearInvalid(el) {
+        el.classList.remove('is-invalid');
+        el.removeAttribute('aria-invalid');
+    }
+
+    required.forEach(function (r) {
+        r.el.addEventListener('input', function () { clearInvalid(r.el); });
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        required.forEach(function (r) { clearInvalid(r.el); });
+        var missing = required.filter(function (r) { return !r.el.value.trim(); });
+
+        if (missing.length) {
+            missing.forEach(function (r) {
+                r.el.classList.add('is-invalid');
+                r.el.setAttribute('aria-invalid', 'true');
+            });
+            errorEl.textContent = 'Please add ' + joinList(missing.map(function (r) { return r.label; })) + ' so we can confirm your call.';
+            errorEl.hidden = false;
+            resultEl.hidden = true;
+            missing[0].el.focus();
+            return;
+        }
+
+        errorEl.hidden = true;
+
+        var lines = ['Hi Trost Studio, I would like to book a free strategy call.', ''];
+        lines.push('Name: ' + f.name.value.trim());
+        lines.push('Business: ' + f.business.value.trim());
+        if (f.type.value) lines.push('Business type: ' + f.type.value);
+        if (f.city.value.trim()) lines.push('City: ' + f.city.value.trim());
+        lines.push('Contact number: ' + f.phone.value.trim());
+        if (f.budget.value) lines.push('Monthly budget: ' + f.budget.value);
+        lines.push('Preferred day: ' + f.day.value);
+        lines.push('Preferred time (IST): ' + f.time.value);
+        lines.push('');
+        lines.push('Please confirm my call. Thank you.');
+
+        var message = lines.join('\n');
+        msgEl.value = message;
+        waBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+        resultEl.hidden = false;
+        resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    copyBtn.addEventListener('click', function () {
+        var text = msgEl.value;
+        function done() {
+            copyBtn.textContent = 'Copied';
+            setTimeout(function () { copyBtn.textContent = 'Copy message'; }, 2000);
+        }
+        function fallback() {
+            msgEl.focus();
+            msgEl.select();
+            try { if (document.execCommand('copy')) done(); } catch (err) {}
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, fallback);
+        } else {
+            fallback();
+        }
+    });
+})();
 </script>
     <!-- CTA -->
     <section class="cta-section" id="contact">
