@@ -322,7 +322,110 @@
             <span class="client-name">Sable Home</span>
         </div>
     </section>
- 
+ <!-- Start a Campaign -->
+<section class="section" id="campaign">
+    <div class="section-inner">
+        <div class="section-label reveal">Start a Campaign</div>
+        <h2 class="section-title reveal reveal-delay-1">Tell us about<br>your business</h2>
+        <p class="section-body reveal reveal-delay-2">
+            Share a few details and we'll get back to you with the right creators for your brand.
+        </p>
+
+        <form class="campaign-form reveal" id="campaignForm">
+            <input type="hidden" name="_subject" value="New Campaign Request — Trost Studio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="cf-name">Your Name</label>
+                    <input type="text" id="cf-name" name="Name" required>
+                </div>
+                <div class="form-field">
+                    <label for="cf-business">Business / Brand Name</label>
+                    <input type="text" id="cf-business" name="Business" required>
+                </div>
+                <div class="form-field">
+                    <label for="cf-email">Email</label>
+                    <input type="email" id="cf-email" name="Email" required>
+                </div>
+                <div class="form-field">
+                    <label for="cf-phone">WhatsApp / Phone</label>
+                    <input type="tel" id="cf-phone" name="Phone" required>
+                </div>
+                <div class="form-field">
+                    <label for="cf-niche">Industry</label>
+                    <select id="cf-niche" name="Industry" required>
+                        <option value="" disabled selected>Select</option>
+                        <option>AI & Tech</option>
+                        <option>Fashion</option>
+                        <option>Beauty</option>
+                        <option>Lifestyle</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="cf-budget">Campaign Budget</label>
+                    <select id="cf-budget" name="Budget" required>
+                        <option value="" disabled selected>Select</option>
+                        <option>Under ₹25K</option>
+                        <option>₹25K – ₹1L</option>
+                        <option>₹1L – ₹5L</option>
+                        <option>₹5L+</option>
+                        <option>Not sure yet</option>
+                    </select>
+                </div>
+                <div class="form-field full">
+                    <label for="cf-link">Website / Instagram (optional)</label>
+                    <input type="text" id="cf-link" name="Website_or_Instagram">
+                </div>
+                <div class="form-field full">
+                    <label for="cf-msg">Tell us about your business &amp; goals</label>
+                    <textarea id="cf-msg" name="Message" required></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="campaign-btn" id="campaignBtn">
+                Start Campaign
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <div class="form-status" id="campaignStatus"></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    (function () {
+        var form = document.getElementById('campaignForm');
+        var btn = document.getElementById('campaignBtn');
+        var status = document.getElementById('campaignStatus');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            btn.disabled = true;
+            status.className = 'form-status';
+            status.textContent = 'Sending...';
+            var data = {};
+            new FormData(form).forEach(function (v, k) { data[k] = v; });
+            fetch('https://formsubmit.co/ajax/trost.studio11@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+            .then(function () {
+                form.reset();
+                status.className = 'form-status ok';
+                status.textContent = "Thanks! We've received your details and will reach out soon.";
+            })
+            .catch(function () {
+                status.className = 'form-status err';
+                status.textContent = 'Something went wrong. Please email us at trost.studio11@gmail.com';
+            })
+            .finally(function () { btn.disabled = false; });
+        });
+    })();
+</script>
     <!-- CTA -->
     <section class="cta-section" id="contact">
         <h2 class="cta-title reveal">
